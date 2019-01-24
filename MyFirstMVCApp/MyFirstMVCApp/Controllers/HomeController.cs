@@ -17,5 +17,16 @@ namespace PersonOfTheYear.Controllers
             return View();
         }
 
+
+        // Processes the form inputs and passes to Result() 
+        [HttpPost]
+        public IActionResult Index(int startYear, int endYear)
+        {
+            //Redirect to results view action
+            return RedirectToAction("Result", new { startYear, endYear });
+        }
+
+
+
     }
 }
