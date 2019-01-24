@@ -26,6 +26,14 @@ namespace PersonOfTheYear.Controllers
             return RedirectToAction("Result", new { startYear, endYear });
         }
 
+        // Retrieves the persons of the year between startYear and endYear and 
+        public ViewResult Result(int startYear, int endYear)
+        {
+            //Get List of persons
+            List<Person> persons = Person.GetPersons(startYear, endYear);
+            return View(persons);
+        }
+
 
 
     }
