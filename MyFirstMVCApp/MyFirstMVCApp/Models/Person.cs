@@ -18,7 +18,7 @@ namespace PersonOfTheYear.Models
         public string Category { get; set; }
         public string Context { get; set; }
 
-       
+
         // Static method that returns a List of PersonOfTheYear objects.Takes two
         // parameters: startYear and endYear used for filtering the list of all people
         // to just those whose years fall within the desired range
@@ -32,16 +32,24 @@ namespace PersonOfTheYear.Models
             for (int i = 1; i < myFile.Length; i++)//For each string in the myFile array, skipping the top row (column names)
             {
                 string[] fields = myFile[i].Split(',');
-                people.Add(new Person 
+                people.Add(new Person
                 {
-                    Year = Convert.ToInt32(fields[0]), 
-                    Honor = fields[1], 
-                    Name = fields[2], 
-                    Country = fields[3], 
+                    Year = Convert.ToInt32(fields[0]),
+                    Honor = fields[1],
+                    Name = fields[2],
+                    Country = fields[3],
                     Birth_Year = (fields[4] == "") ? 0 : Convert.ToInt32(fields[4]),
                     DeathYear = (fields[5] == "") ? 0 : Convert.ToInt32(fields[5]),
-                    Title = fields[6], 
-                    Category = fields[7], 
-                    Context = fields[8], 
+                    Title = fields[6],
+                    Category = fields[7],
+                    Context = fields[8],
                 });
             }
+
+            List<Person> listofPeople = people.Where(p => (p.Year >= startYear) && (p.Year <= endYear)).ToList();
+            return listofPeople; //Return filtered list of people
+        }
+
+    }
+
+}
